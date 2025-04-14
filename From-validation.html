@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <style>
+        body {
+            font-size: 130%;
+        }
+        h1 {
+            text-align: center;
+            color: green;
+            font-size: 50px;
+            margin-top: 20px;
+        }
+        .wrapper {
+            width: 550px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+        label {
+            font-family: 'Times New Roman', Times, serif;
+            width: 200px;
+            float: left;
+            position: relative;
+            display: block;
+            top: 12px;
+            margin-bottom: 10px;
+        }
+        input {
+            font-family: 'Times New Roman', Times, serif;
+            width: 320px;
+            padding: 5px 5px 12px 5px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            font-size: 20px;
+        }
+        #submit {
+            font-weight: bold;
+            color: rgb(212, 214, 212);
+            background-color: green;
+            align-items: center;
+            width: 130px;
+            margin-left: 200px;
+        }
+        .error {
+            font-weight: bold;
+            color: red;
+        }
+    </style>
+    <title>Form Validation System</title>
+</head>
+
+<body>
+
+    <h1>Form Validation System</h1>
+    <div class="wrapper">
+        <label for="Email">Email</label>
+        <input type="Email" name="Email" id="Email" title="Enter your email address"
+            placeholder="Enter your email address">
+
+        <label for="phoneno">Phone Number</label>
+        <input type="number" name="phoneno" id="phone" title="Enter your phone number"
+            placeholder="Enter your phone number">
+
+        <label for=" Password">Password</label>
+        <input type="password" name="password" id="pass" title="Enter your password" placeholder="Enter your password">
+
+        <label for="confirmpassword">Confirm Password</label>
+        <input type="password" name="confirmpassword" id="cpass" title="Confirm your password"
+            placeholder="Confirm your password">
+
+        <input type="submit" value="Submit" id="submit" name="submit" placeholder="Submit">
+        <div class="error"></div>
+    </div>
+
+    <script>
+        // Form Validation
+        // 1. Check if the email is valid
+        // 2. Check if the phone number is valid
+        // 3. Check if the password and confirm password match
+        let errormsg = "";
+        let missfield = "";
+
+        function isEmail(email) {
+            // Regular expression to validate email
+            let regex = /^[a-zA-Z0-9._%+-]+\@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+            return regex.test(email);
+        }
+        $("#submit").click(function () {
+            if ($("#Email").val() == "") {
+                missfield += "<p>Please enter your Email \n</p>";
+            }
+            if ($("#phone").val() == "") {
+                missfield += "<p>Enter Your Number \n</p>";
+            }
+            if ($("#pass").val() == "") {
+                missfield += "<p>Please enter your password</p>";
+            }
+
+            if (isEmail($("#Email").val()) == false) {
+                errormsg += "<p>Please enter a valid email address</p>";
+            }
+            if ($.isNumeric($("#phone").val()) == false) {
+                errormsg += "<p>Please enter a valid phone number</p>";
+            }
+            if ($("#pass").val() != $("#cpass").val()) {
+                errormsg += "<p>Please enter correct  password</p>";
+            }
+            if (errormsg == "") {
+                $(".error").html("<p>Form submitted successfully\n</p>");
+            }
+            else {
+                $(".error").html(errormsg + missfield);
+            }
+
+        });
+    </script>
+
+</body>
+
+</html>
