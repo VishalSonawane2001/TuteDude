@@ -46,5 +46,5 @@ This is a simple weather web application that fetches and displays real-time wea
 The application uses the OpenWeatherMap API. Replace the `appid` parameter in the API URL with your own API key:
 
 ```javascript
-link = "https://api.openweathermap.org/data/2.5/weather?q=pune&appid=YOUR_API_KEY";
+link = [link txt]("https://api.openweathermap.org/data/2.5/weather?q=pune&appid=YOUR_API_KEY")
 
